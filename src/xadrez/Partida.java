@@ -23,9 +23,9 @@ public class Partida {
 		 }return mat;
 	} 
 	private void inicio() {
-		tabuleiro.lugarPeca(new Torre(tabuleiro, Cor.WHITE), new Posicao(2, 1));
-		tabuleiro.lugarPeca(new Rei(tabuleiro, Cor.BLACK), new Posicao(0, 4));
+		tabuleiro.lugarPeca(new Torre(tabuleiro, Cor.WHITE), new Posicao(5, 1));
 		tabuleiro.lugarPeca(new Rei(tabuleiro, Cor.BLACK), new Posicao(7, 4));
+		tabuleiro.lugarPeca(new Rei(tabuleiro, Cor.BLACK), new Posicao(4, 4));
 	}
 	
 }
