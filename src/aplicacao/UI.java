@@ -1,6 +1,6 @@
 package aplicacao;
 
-import xadrezcor.PecaXadrez;
+import xadrez.PecaXadrez;
 
 public class UI {
 	

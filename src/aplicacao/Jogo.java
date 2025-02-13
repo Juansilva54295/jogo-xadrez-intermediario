@@ -1,6 +1,6 @@
 package aplicacao;
 
-import xadrezcor.Partida;
+import xadrez.Partida;
 
 public class Jogo {
 
