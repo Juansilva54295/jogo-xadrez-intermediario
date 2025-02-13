@@ -29,9 +29,19 @@ public class Partida {
 	
 	
 	private void inicio() {
-		novolugarPeca('b',6,new Torre(tabuleiro, Cor.WHITE));
-		novolugarPeca('c',5,new Rei(tabuleiro, Cor.BLACK));
-		novolugarPeca('d',2,new Rei(tabuleiro, Cor.BLACK));
+		novolugarPeca('c', 1, new Torre(tabuleiro, Cor.WHITE));
+        novolugarPeca('c', 2, new Torre(tabuleiro, Cor.WHITE));
+        novolugarPeca('d', 2, new Torre(tabuleiro, Cor.WHITE));
+        novolugarPeca('e', 2, new Torre(tabuleiro, Cor.WHITE));
+        novolugarPeca('e', 1, new Torre(tabuleiro, Cor.WHITE));
+        novolugarPeca('d', 1, new Rei(tabuleiro, Cor.WHITE));
+
+        novolugarPeca('c', 7, new Torre(tabuleiro, Cor.BLACK));
+        novolugarPeca('c', 8, new Torre(tabuleiro, Cor.BLACK));
+        novolugarPeca('d', 7, new Torre(tabuleiro, Cor.BLACK));
+        novolugarPeca('e', 7, new Torre(tabuleiro, Cor.BLACK));
+        novolugarPeca('e', 8, new Torre(tabuleiro, Cor.BLACK));
+        novolugarPeca('d', 8, new Rei(tabuleiro, Cor.BLACK));
 	}
 	
 }
