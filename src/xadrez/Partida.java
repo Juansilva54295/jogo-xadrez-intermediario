@@ -28,6 +28,7 @@ public class Partida {
 		Posicao inicio = posiInicial.posicaoXadrez(null);
 		Posicao finaly = posiFinal.posicaoXadrez(null);
 		validarInicio(inicio);
+		validarFinal(inicio,finaly);
 		Peca capturarPeca = fazerMovimento(inicio,finaly);
 		return (PecaXadrez)capturarPeca;
 	}
@@ -46,6 +47,15 @@ public class Partida {
 			throw new XadException("NÃO EXISTE MOVIMENTO POSSIVEL PARA ESTÁ "
 					+ "PEÇA");
 		}
+		
+	}
+	
+	private void validarFinal(Posicao inicio,Posicao finaly) {
+		if (!tabuleiro.peca(inicio).movimentoPossivel(finaly)) {
+			throw new XadException("A PEÇA NÃO PODE SER MOVIDA PARA A POSIÇÃO DE DESTINO");
+		}
+		
+		
 		
 	}
 	private void novolugarPeca(char coluna,int linha,PecaXadrez peca) {
