@@ -8,13 +8,32 @@ import xadrez.pecas.Torre;
 
 public class Partida {
 
+	
+	private int turno;
+	private Cor vezdoAd;
 	private Tabuleiro tabuleiro;
 	
 	public Partida() {
 		tabuleiro = new Tabuleiro(8,8);
+		turno = 1;
+		vezdoAd = Cor.WHITE;
 		inicio();
 	}
 	
+	
+	
+	public int getTurno() {
+		return turno;
+	}
+
+
+
+	public Cor getVezdoAd() {
+		return vezdoAd;
+	}
+
+
+
 	public PecaXadrez [][] getPecas(){
 		 PecaXadrez[][] mat = new PecaXadrez[tabuleiro.getLinhas()][tabuleiro.getColuna()];
 		 for (int i = 0; i < tabuleiro.getLinhas(); i++) {
@@ -23,6 +42,7 @@ public class Partida {
 			 }
 		 }return mat;
 	} 
+	
 	
 	public boolean [][] movimentoPossiveis(PosiXadrez posiInicial){
 		Posicao posicao = posiInicial.posicaoXadrez(null);
@@ -36,6 +56,7 @@ public class Partida {
 		validarInicio(inicio);
 		validarFinal(inicio,finaly);
 		Peca capturarPeca = fazerMovimento(inicio,finaly);
+		proxTurno();
 		return (PecaXadrez)capturarPeca;
 	}
 	
@@ -49,18 +70,26 @@ public class Partida {
 		if (!tabuleiro.haumaPeca(posicao)) {
 			throw new XadException("NÃO EXISTE PEÇA NESSA POSIÇÃO");
 		}
+		if (vezdoAd != ((PecaXadrez)tabuleiro.peca(posicao)).getCor()) {
+			throw new XadException("A PEÇA ESCOLHIDA NÃO É SUA");
+		}
+		
 		if(!tabuleiro.peca(posicao).peloMenosumaPosi()) {
 			throw new XadException("NÃO EXISTE MOVIMENTO POSSIVEL PARA ESTÁ "
 					+ "PEÇA");
 		}
 		
 	}
+
+	private void proxTurno () {
+		turno++;
+		vezdoAd = (vezdoAd == Cor.WHITE) ? Cor.BLACK : Cor.WHITE;
+	}
 	
 	private void validarFinal(Posicao inicio,Posicao finaly) {
 		if (!tabuleiro.peca(inicio).movimentoPossivel(finaly)) {
 			throw new XadException("A PEÇA NÃO PODE SER MOVIDA PARA A POSIÇÃO DE DESTINO");
 		}
-		
 		
 		
 	}

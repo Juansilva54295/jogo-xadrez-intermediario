@@ -5,6 +5,7 @@ import java.util.InputMismatchException;
 import java.util.Scanner;
 
 import xadrez.Cor;
+import xadrez.Partida;
 import xadrez.PecaXadrez;
 import xadrez.PosiXadrez;
 
@@ -44,6 +45,13 @@ public class UI {
 			throw new InputMismatchException("ERRO: A linha deve estar entre 1 e 8!");
 
 		return new PosiXadrez(s.charAt(0), linha);
+	}
+	
+	public static void printPartida(Partida partida) {
+		printTabuleiro(partida.getPecas());
+		System.out.println();
+		System.out.println("TURNO: " + partida.getTurno());
+		System.out.println("ESPERANDO O JOGADOR: " + partida.getVezdoAd());
 	}
 
 	public static void printTabuleiro(PecaXadrez[][] pecas) {

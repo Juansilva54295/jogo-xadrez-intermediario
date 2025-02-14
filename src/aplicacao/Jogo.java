@@ -20,7 +20,7 @@ public class Jogo {
 			
 		try {	
 			UI.clearScreen();	
-			UI.printTabuleiro(partida.getPecas());
+			UI.printPartida(partida);
 			System.out.println();
 			System.out.println("POSIÇÃO INICIAL: ");
 			PosiXadrez inicio = UI.lerPosiXadrez(scn);
