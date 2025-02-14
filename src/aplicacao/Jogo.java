@@ -25,6 +25,10 @@ public class Jogo {
 			System.out.println("POSIÇÃO INICIAL: ");
 			PosiXadrez inicio = UI.lerPosiXadrez(scn);
 			
+			boolean [][] movimentoPossiveis = partida.movimentoPossiveis(inicio);
+			UI.clearScreen();
+			UI.printTabuleiro(partida.getPecas(),movimentoPossiveis);
+			
 			System.out.println("POSIÇÃO FINAL: ");
 			PosiXadrez finaly = UI.lerPosiXadrez(scn);
 		
