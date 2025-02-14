@@ -42,6 +42,10 @@ public class Partida {
 		if (!tabuleiro.haumaPeca(posicao)) {
 			throw new XadException("NÃO EXISTE PEÇA NESSA POSIÇÃO");
 		}
+		if(!tabuleiro.peca(posicao).peloMenosumaPosi()) {
+			throw new XadException("NÃO EXISTE MOVIMENTO POSSIVEL PARA ESTÁ "
+					+ "PEÇA");
+		}
 		
 	}
 	private void novolugarPeca(char coluna,int linha,PecaXadrez peca) {
