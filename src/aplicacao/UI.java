@@ -28,20 +28,24 @@ public class UI {
 	public static final String ANSI_CYAN_BACKGROUND = "\u001B[46m";
 	public static final String ANSI_WHITE_BACKGROUND = "\u001B[47m";
 
-	
-		public static PosiXadrez lerPosiXadrez(Scanner scn) {
-		    String s = scn.nextLine().trim();
-		    if (s.length() != 2 || s.charAt(0) < 'a' || s.charAt(0) > 'h' || !Character.isDigit(s.charAt(1)))
-		        throw new InputMismatchException("ERRO: Entrada inválida. Use o formato 'a1' até 'h8'.");
-		    
-		    int linha = Character.getNumericValue(s.charAt(1));
-		    if (linha < 1 || linha > 8)
-		        throw new InputMismatchException("ERRO: A linha deve estar entre 1 e 8!");
+	// https://stackoverflow.com/questions/2979383/java-clear-the-console
+	public static void clearScreen() {
+		System.out.print("\033[H\033[2J");
+		System.out.flush();
+	}
 
-		    return new PosiXadrez(s.charAt(0), linha);
-		}
+	public static PosiXadrez lerPosiXadrez(Scanner scn) {
+		String s = scn.nextLine().trim();
+		if (s.length() != 2 || s.charAt(0) < 'a' || s.charAt(0) > 'h' || !Character.isDigit(s.charAt(1)))
+			throw new InputMismatchException("ERRO: Entrada inválida. Use o formato 'a1' até 'h8'.");
 
-	
+		int linha = Character.getNumericValue(s.charAt(1));
+		if (linha < 1 || linha > 8)
+			throw new InputMismatchException("ERRO: A linha deve estar entre 1 e 8!");
+
+		return new PosiXadrez(s.charAt(0), linha);
+	}
+
 	public static void printTabuleiro(PecaXadrez[][] pecas) {
 		for (int i = 0; i < pecas.length; i++) {
 			System.out.print((8 - i) + " ");
@@ -54,20 +58,16 @@ public class UI {
 	}
 
 	private static void printPeca(PecaXadrez peca) {
-    	if (peca == null) {
-            System.out.print("-");
-        }
-        else {
-            if (peca.getCor() == Cor.WHITE) {
-                System.out.print(ANSI_WHITE + peca + ANSI_RESET);
-            }
-            else {
-                System.out.print(ANSI_YELLOW + peca + ANSI_RESET);
-            }
-        }
-        System.out.print(" ");
+		if (peca == null) {
+			System.out.print("-");
+		} else {
+			if (peca.getCor() == Cor.WHITE) {
+				System.out.print(ANSI_WHITE + peca + ANSI_RESET);
+			} else {
+				System.out.print(ANSI_YELLOW + peca + ANSI_RESET);
+			}
+		}
+		System.out.print(" ");
 	}
-	
-	
 
 }
