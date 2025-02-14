@@ -1,5 +1,8 @@
 package xadrez;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import tabuleiro.jogo.Peca;
 import tabuleiro.jogo.Posicao;
 import tabuleiro.jogo.Tabuleiro;
@@ -12,6 +15,9 @@ public class Partida {
 	private int turno;
 	private Cor vezdoAd;
 	private Tabuleiro tabuleiro;
+	
+	private List<Peca> pecaNoTabuleiro = new ArrayList<>();
+	private List<Peca> pecascapturadas = new ArrayList<>();
 	
 	public Partida() {
 		tabuleiro = new Tabuleiro(8,8);
@@ -64,8 +70,15 @@ public class Partida {
 		Peca p = tabuleiro.removePeca(inicio);
 		Peca captuararPeca = tabuleiro.removePeca(finaly);
 		tabuleiro.lugarPeca(p, finaly);
+		
+		if (captuararPeca != null) {
+		    pecaNoTabuleiro.remove(captuararPeca);  
+		    pecascapturadas.add(captuararPeca);   
+		}
+
 		return captuararPeca;
 	}
+	
 	private void validarInicio (Posicao posicao) {
 		if (!tabuleiro.haumaPeca(posicao)) {
 			throw new XadException("NÃO EXISTE PEÇA NESSA POSIÇÃO");
@@ -95,6 +108,7 @@ public class Partida {
 	}
 	private void novolugarPeca(char coluna,int linha,PecaXadrez peca) {
 		tabuleiro.lugarPeca(peca, new PosiXadrez(coluna, linha).posicaoXadrez(null));
+		pecaNoTabuleiro.add(peca);
 	}
 	
 	
